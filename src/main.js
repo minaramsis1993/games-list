@@ -1,8 +1,27 @@
-import Vue from 'vue'
-import App from './App.vue'
+import Vue from 'vue';
+import App from './App.vue';
+import VueRouter from 'vue-router';
+import GamesList from './components/GamesList';
+import GameDetails from './components/GameDetails';
+import store from './store';
 
-Vue.config.productionTip = false
+Vue.config.productionTip = false;
 
+Vue.use(VueRouter);
+
+export const router = new VueRouter({
+  mode: 'history',
+  routes: [
+    { path: '/', redirect: '/home' },
+    { path: '/home', component: GamesList },
+    {
+      path: '/details',
+      component: GameDetails,
+    },
+  ],
+});
 new Vue({
-  render: h => h(App),
-}).$mount('#app')
+  store,
+  router,
+  render: (h) => h(App),
+}).$mount('#app');
