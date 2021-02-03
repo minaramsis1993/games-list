@@ -1,5 +1,9 @@
 <template>
-  <div class="card mb-5 shadow-sm" v-if="featuredGame">
+  <div
+    class="card mb-5 shadow-sm"
+    v-if="featuredGame"
+    @click="$emit('new-game-selected', featuredGame)"
+  >
     <div class="row">
       <div class="col-md-8 col-12">
         <img

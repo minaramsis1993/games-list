@@ -4,9 +4,18 @@
     <div class="container mt-5 mb-5">
       <div class="row">
         <div class="col">
-          <FeaturedGame :featuredGame="getFeaturedGame" />
-          <GamesCard :games="getRecommendedGames" />
-          <GamesCard :games="getPopularGames" />
+          <FeaturedGame
+            :featuredGame="getFeaturedGame"
+            @new-game-selected="gameSelectedHandler"
+          />
+          <GamesCard
+            :games="getRecommendedGames"
+            @new-game-selected="gameSelectedHandler"
+          />
+          <GamesCard
+            :games="getPopularGames"
+            @new-game-selected="gameSelectedHandler"
+          />
         </div>
       </div>
     </div>
@@ -14,7 +23,7 @@
 </template>
 
 <script>
-// import { router } from './main';
+import { router } from '../main';
 import { mapActions, mapGetters } from 'vuex';
 import GenresSlider from './GenresSlider';
 import FeaturedGame from './FeaturedGame';
@@ -35,15 +44,10 @@ export default {
   },
   methods: {
     ...mapActions(['selectGame', 'fetchGames']),
-    // onClickNav() {
-    //   this.selectGame({
-    //     id: 1,
-    //     name: 'game1',
-    //   });
-    //   router.push({
-    //     path: 'details',
-    //   });
-    // },
+    gameSelectedHandler(game) {
+      this.selectGame(game);
+      router.push('/details');
+    },
   },
   created() {
     this.fetchGames();

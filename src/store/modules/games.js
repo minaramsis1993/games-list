@@ -59,7 +59,6 @@ const mutations = {
   // JUST MUTAION
   setSearchQuery: (state, searchQuery) => {
     state.searchQuery = searchQuery;
-    console.log('now [state]', state);
   },
 };
 

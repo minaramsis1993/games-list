@@ -4,7 +4,7 @@
       <div class="container">
         <div>
           <a class="navbar-brand" href="#">
-            <img src="../assets/games.jpg" alt="Games-img" />
+            <img src="../assets/games.jpg" alt="Games-img-logo" />
           </a>
         </div>
         <div class="col-md-4">
@@ -36,6 +36,8 @@
 </template>
 
 <script>
+import { router } from '../main';
+
 import { mapMutations, mapActions } from 'vuex';
 
 export default {
@@ -48,6 +50,9 @@ export default {
     ...mapActions(['fetchGames']),
     ...mapMutations(['setSearchQuery']),
     onSubmit() {
+      if (router.currentRoute.path === '/details') {
+        router.push('/');
+      }
       const searchQ = this.searchQ;
       this.setSearchQuery(searchQ);
       this.fetchGames();

@@ -14,6 +14,7 @@ export const router = new VueRouter({
   routes: [
     { path: '/', redirect: '/home' },
     { path: '/home', component: GamesList },
+    // There is no getGameById or something like this .. so used vuex for this
     {
       path: '/details',
       component: GameDetails,

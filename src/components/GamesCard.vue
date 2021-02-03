@@ -1,15 +1,30 @@
 <template>
   <div class="recommended" v-if="games">
-    <div class="card mb-5 shadow-sm" v-if="games">
+    <div class="card mb-5 shadow-sm">
       <div class="row grid-container">
-        <div v-for="game in games" :key="game.id" class="grid-item">
-          <img
-            class="card-img-top"
-            alt="Card image cap"
-            :src="game.background_image"
-          />
-          <p>
-            {{ game.name }}
+        <div
+          class="grid-item"
+          v-for="game in games"
+          :key="game.id"
+          @click="$emit('new-game-selected', game)"
+        >
+          <div>
+            <img
+              class="card-img-top"
+              alt="Card image cap"
+              :src="game.background_image"
+            />
+            <p class="game-name">
+              {{ game.name }}
+            </p>
+          </div>
+          <p class="info" v-if="withMoreInfo">
+            <span
+              v-for="(platform, index) in game.parent_platforms"
+              :key="platform.id"
+              >{{ platform.platform.name }}
+              {{ index !== game.parent_platforms.length - 1 ? ',' : '' }}
+            </span>
           </p>
         </div>
       </div>
@@ -19,13 +34,26 @@
 
 <script>
 export default {
-  props: ['games'],
+  props: {
+    games: Array,
+    withMoreInfo: Boolean,
+  },
 };
 </script>
 
 <style scoped>
 .grid-item {
   cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.grid-item img {
+  border-radius: 0.7rem;
+}
+p.game-name {
+  padding: 0;
+  margin: 0;
 }
 .card {
   padding-top: 3.6rem;
@@ -37,6 +65,12 @@ export default {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   column-gap: 1rem;
+}
+
+.info {
+  color: #d0d0d1;
+  text-align: center;
+  margin-top: 2.5rem;
 }
 
 /* TABLET */
