@@ -3,18 +3,16 @@
     <div class="container mt-5 mb-5">
       <div class="row">
         <div class="col">
-          DETAILS NAME {{ getSelectedGame.name }}
-          <div class="card mb-5 shadow-sm">
-            <div class="row">
-              <div class="col">
-                <img
-                  class="card-img-top card-img-bottom"
-                  alt="Card image cap"
-                  :src="getSelectedGame.background_image"
-                />
-              </div>
-            </div>
+          <!-- IMAGE -->
+          <div class="mb-5 shadow-sm">
+            <img
+              class="img"
+              alt="game-image"
+              :src="getSelectedGame.background_image"
+            />
           </div>
+          <!-- MORE_DETAILS_CARD -->
+          <MoreDetailsCard v-if="getSelectedGame" :game="getSelectedGame" />
           <GamesCard
             :games="getRecommendedGames"
             :withMoreInfo="true"
@@ -30,10 +28,12 @@
 import { router } from '../main';
 import { mapGetters, mapActions } from 'vuex';
 import GamesCard from './GamesCard';
+import MoreDetailsCard from './MoreDetailsCard';
 
 export default {
   components: {
     GamesCard,
+    MoreDetailsCard,
   },
   computed: {
     ...mapGetters(['getSelectedGame', 'getRecommendedGames']),
@@ -53,9 +53,11 @@ export default {
 </script>
 
 <style scoped>
-.card-img-top {
+img.img {
+  width: 100%;
   max-height: 50vh;
   object-fit: cover;
   object-position: top;
+  border-radius: 4px;
 }
 </style>

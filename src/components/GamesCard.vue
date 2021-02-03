@@ -18,7 +18,7 @@
               {{ game.name }}
             </p>
           </div>
-          <p class="info" v-if="withMoreInfo">
+          <p class="info text-muted" v-if="withMoreInfo">
             <span
               v-for="(platform, index) in game.parent_platforms"
               :key="platform.id"
@@ -68,7 +68,6 @@ p.game-name {
 }
 
 .info {
-  color: #d0d0d1;
   text-align: center;
   margin-top: 2.5rem;
 }

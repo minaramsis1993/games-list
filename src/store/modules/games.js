@@ -11,6 +11,7 @@ const state = {
   // FOR UI
   selectedGenre: null,
   searchQuery: '',
+  isGamesLoading: false,
 };
 
 const getters = {
@@ -23,6 +24,7 @@ const getters = {
   getGenres: (state) => state.genres,
   getSelectedGame: (state) => state.selectedGame,
   getSelectedGenre: (state) => state.selectedGenre,
+  getLoadingState: (state) => state.isGamesLoading,
 };
 
 const actions = {
@@ -31,7 +33,9 @@ const actions = {
       search: state.searchQuery.length ? state.searchQuery : undefined,
       genres: state.selectedGenre ? state.selectedGenre.slug : undefined,
     };
+    commit('setLoading', true);
     const res = await api.fetchGames(qParams);
+    commit('setLoading', false);
     const data = res.data.results;
     commit('setGames', data);
     // JUST MOCKING Featured, Recommended & Popular Games
@@ -57,9 +61,9 @@ const mutations = {
   setSelectedGame: (state, game) => (state.selectedGame = game),
   setSelectedGenre: (state, genre) => (state.selectedGenre = genre),
   // JUST MUTAION
-  setSearchQuery: (state, searchQuery) => {
-    state.searchQuery = searchQuery;
-  },
+  setSearchQuery: (state, searchQuery) => (state.searchQuery = searchQuery),
+  setLoading: (state, isGamesLoading) =>
+    (state.isGamesLoading = isGamesLoading),
 };
 
 export default {

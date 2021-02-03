@@ -4,18 +4,23 @@
     <div class="container mt-5 mb-5">
       <div class="row">
         <div class="col">
-          <FeaturedGame
-            :featuredGame="getFeaturedGame"
-            @new-game-selected="gameSelectedHandler"
-          />
-          <GamesCard
-            :games="getRecommendedGames"
-            @new-game-selected="gameSelectedHandler"
-          />
-          <GamesCard
-            :games="getPopularGames"
-            @new-game-selected="gameSelectedHandler"
-          />
+          <div class="loader-wrapper" v-if="getLoadingState">
+            <PulseLoader :loading="true" :color="color" />
+          </div>
+          <div v-else>
+            <FeaturedGame
+              :featuredGame="getFeaturedGame"
+              @new-game-selected="gameSelectedHandler"
+            />
+            <GamesCard
+              :games="getRecommendedGames"
+              @new-game-selected="gameSelectedHandler"
+            />
+            <GamesCard
+              :games="getPopularGames"
+              @new-game-selected="gameSelectedHandler"
+            />
+          </div>
         </div>
       </div>
     </div>
@@ -25,12 +30,14 @@
 <script>
 import { router } from '../main';
 import { mapActions, mapGetters } from 'vuex';
+import PulseLoader from 'vue-spinner/src/PulseLoader.vue';
 import GenresSlider from './GenresSlider';
 import FeaturedGame from './FeaturedGame';
 import GamesCard from './GamesCard';
 
 export default {
   components: {
+    PulseLoader,
     GenresSlider,
     FeaturedGame,
     GamesCard,
@@ -40,6 +47,7 @@ export default {
       'getFeaturedGame',
       'getRecommendedGames',
       'getPopularGames',
+      'getLoadingState',
     ]),
   },
   methods: {
@@ -52,7 +60,20 @@ export default {
   created() {
     this.fetchGames();
   },
+  data() {
+    return {
+      color: '#5bc0de',
+    };
+  },
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.loader-wrapper {
+  width: 100%;
+  height: 56vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+</style>

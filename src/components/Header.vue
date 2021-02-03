@@ -3,9 +3,9 @@
     <nav class="navbar">
       <div class="container">
         <div>
-          <a class="navbar-brand" href="#">
+          <router-link class="navbar-brand" to="/">
             <img src="../assets/games.jpg" alt="Games-img-logo" />
-          </a>
+          </router-link>
         </div>
         <div class="col-md-4">
           <form @submit.prevent="onSubmit">
