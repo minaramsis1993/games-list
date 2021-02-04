@@ -31,9 +31,9 @@
 import { router } from '../main';
 import { mapActions, mapGetters } from 'vuex';
 import PulseLoader from 'vue-spinner/src/PulseLoader.vue';
-import GenresSlider from './GenresSlider';
-import FeaturedGame from './FeaturedGame';
-import GamesCard from './GamesCard';
+import GenresSlider from '../components/GenresSlider';
+import FeaturedGame from '../components/FeaturedGame';
+import GamesCard from '../components/GamesCard';
 
 export default {
   components: {

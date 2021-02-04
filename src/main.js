@@ -1,8 +1,8 @@
 import Vue from 'vue';
 import App from './App.vue';
 import VueRouter from 'vue-router';
-import GamesList from './components/GamesList';
-import GameDetails from './components/GameDetails';
+import GamesList from './containers/GamesList';
+import GameDetails from './containers/GameDetails';
 import store from './store';
 
 Vue.config.productionTip = false;

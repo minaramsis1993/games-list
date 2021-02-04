@@ -22,11 +22,17 @@
                   <i class="fa fa-search"></i>
                 </button>
               </span>
-              <span class="input-group-append ">
-                <div class="input-group-text bg-transparent i2-wrapper">
-                  <i class="fa fa-ellipsis-v"></i>
+              <div class="dropdown">
+                <span class="input-group-append">
+                  <div class="input-group-text bg-transparent i2-wrapper">
+                    <i class="fa fa-ellipsis-v"></i>
+                  </div>
+                </span>
+                <div class="dropdown-content">
+                  <router-link to="#">Login</router-link>
+                  <router-link to="#">Signup</router-link>
                 </div>
-              </span>
+              </div>
             </div>
           </form>
         </div>
@@ -37,10 +43,10 @@
 
 <script>
 import { router } from '../main';
-
 import { mapMutations, mapActions } from 'vuex';
 
 export default {
+  name: 'Header',
   data() {
     return {
       searchQ: '',
@@ -62,6 +68,30 @@ export default {
 </script>
 
 <style scoped>
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+.dropdown-content {
+  display: none;
+  position: absolute;
+  z-index: 1;
+  background-color: #f1f1f1;
+  min-width: 8rem;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+}
+.dropdown-content a {
+  display: block;
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+}
+.dropdown-content a:hover {
+  background: #ddd;
+}
 form {
   width: 100%;
 }

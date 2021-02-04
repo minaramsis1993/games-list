@@ -34,20 +34,32 @@ const actions = {
       genres: state.selectedGenre ? state.selectedGenre.slug : undefined,
     };
     commit('setLoading', true);
-    const res = await api.fetchGames(qParams);
-    commit('setLoading', false);
-    const data = res.data.results;
-    commit('setGames', data);
-    // JUST MOCKING Featured, Recommended & Popular Games
-    commit('setFeaturedGame', data.length ? data[0] : null);
-    commit('setRecommendedGames', data.length > 1 ? data.slice(1, 6) : null);
-    commit('setPopularGames', data.length > 6 ? data.slice(6) : null);
+    try {
+      const res = await api.fetchGames(qParams);
+      commit('setLoading', false);
+      const data = res.data.results;
+      commit('setGames', data);
+      // JUST MOCKING Featured, Recommended & Popular Games
+      commit('setFeaturedGame', data.length ? data[0] : null);
+      commit('setRecommendedGames', data.length > 1 ? data.slice(1, 6) : null);
+      commit('setPopularGames', data.length > 6 ? data.slice(6) : null);
+    } catch (error) {
+      console.log(error);
+      commit('setLoading', false);
+    }
   },
+
   fetchGenres: async ({ commit }, pageSize) => {
-    const res = await api.fetchGenres(pageSize);
-    commit('setGenres', res.data.results);
+    try {
+      const res = await api.fetchGenres(pageSize);
+      commit('setGenres', res.data.results);
+    } catch (error) {
+      console.log(error);
+    }
   },
+
   selectGame: ({ commit }, game) => commit('setSelectedGame', game),
+
   selectGenre: ({ commit }, genre) => commit('setSelectedGenre', genre),
 };
 

@@ -34,6 +34,7 @@
 
 <script>
 export default {
+  name: 'GamesCard',
   props: {
     games: Array,
     withMoreInfo: Boolean,

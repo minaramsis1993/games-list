@@ -19,6 +19,7 @@
 <script>
 import { mapActions, mapGetters } from 'vuex';
 export default {
+  name: 'GenresSlider',
   computed: {
     ...mapGetters(['getGenres', 'getSelectedGenre']),
   },

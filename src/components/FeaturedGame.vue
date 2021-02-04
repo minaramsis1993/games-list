@@ -34,6 +34,7 @@
 
 <script>
 export default {
+  name: 'FeaturedGame',
   props: ['featuredGame'],
 };
 </script>

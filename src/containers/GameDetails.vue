@@ -13,6 +13,7 @@
           </div>
           <!-- MORE_DETAILS_CARD -->
           <MoreDetailsCard v-if="getSelectedGame" :game="getSelectedGame" />
+          <!-- Recommended Games -->
           <GamesCard
             :games="getRecommendedGames"
             :withMoreInfo="true"
@@ -27,8 +28,8 @@
 <script>
 import { router } from '../main';
 import { mapGetters, mapActions } from 'vuex';
-import GamesCard from './GamesCard';
-import MoreDetailsCard from './MoreDetailsCard';
+import GamesCard from '../components/GamesCard';
+import MoreDetailsCard from '../components/MoreDetailsCard';
 
 export default {
   components: {
