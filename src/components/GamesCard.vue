@@ -9,11 +9,7 @@
           @click="$emit('new-game-selected', game)"
         >
           <div>
-            <img
-              class="card-img-top"
-              alt="Card image cap"
-              :src="game.background_image"
-            />
+            <img alt="Card image cap" :src="game.background_image" />
             <p class="game-name">
               {{ game.name }}
             </p>
@@ -51,6 +47,9 @@ export default {
 }
 .grid-item img {
   border-radius: 0.7rem;
+  width: 100%;
+  height: 24vh;
+  object-fit: cover;
 }
 p.game-name {
   padding: 0;
