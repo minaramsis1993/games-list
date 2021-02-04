@@ -83,5 +83,11 @@ p.game-name {
   .grid-container {
     display: block;
   }
+  .grid-item img {
+    height: 39vh;
+  }
+  .grid-item {
+    margin-bottom: 2rem;
+  }
 }
 </style>
