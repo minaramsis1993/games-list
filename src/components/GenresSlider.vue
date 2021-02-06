@@ -17,14 +17,14 @@
 </template>
 
 <script>
-import { mapActions, mapGetters } from 'vuex';
+import { mapActions, mapGetters } from "vuex";
 export default {
-  name: 'GenresSlider',
+  name: "GenresSlider",
   computed: {
-    ...mapGetters(['getGenres', 'getSelectedGenre']),
+    ...mapGetters(["getGenres", "getSelectedGenre"]),
   },
   methods: {
-    ...mapActions(['fetchGenres', 'fetchGames', 'selectGenre']),
+    ...mapActions(["fetchGenres", "fetchGames", "selectGenre"]),
     genreClickHandler(genre) {
       // WILL selectGenre && fetchGames from the store
       this.selectGenre(genre);
@@ -55,7 +55,7 @@ export default {
   margin: 1rem 0.5rem;
   display: inline-block;
   cursor: pointer;
-  font-weight: 400;
+  font-weight: bold;
   color: #545454;
 }
 .wrapper .active {

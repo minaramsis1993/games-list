@@ -6,9 +6,9 @@
 </template>
 
 <script>
-import Header from './components/Header';
+import Header from "./components/Header";
 export default {
-  name: 'App',
+  name: "App",
   components: {
     Header,
   },
@@ -21,7 +21,7 @@ export default {
   --border-color: #e0e0e0;
 }
 body {
-  font-family: 'Tajawal', sans-serif;
+  font-family: "Tajawal", sans-serif;
   letter-spacing: 0.02rem;
   background: #f5f5f5;
 }
